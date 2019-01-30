@@ -39,7 +39,6 @@ public class VirtualNetworkPanel extends JPanel{
 	
 	public void addVNR(int st, int lt) {
 		this.VNRs.add(new VirtualNetwork(this.VNRCount, st, lt));
-		//System.out.println("vnrcount: "+this.VNRCount);
 		this.VNRCount++;
 		drawPanel();
 	}

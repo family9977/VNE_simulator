@@ -117,13 +117,9 @@ class AutoSimulate extends JDialog{
 		JComboBox AlgorithmChoice = new JComboBox(Algorithm);
 		this.jp[7].add(AlgorithmChoice);
 		
+		
 		this.btnOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//RandomGraphGenerator snRGG = new RandomGraphGenerator(substrateNetwork, 5, 5, 50, 10, 20);
-				
-				/*RandomGraphGenerator rgg = new RandomGraphGenerator(virtualNetworkPanel, 2, 10, 5, 20, 20, 30);
-				rgg.generateVNR(0, 100);
-				rgg.generateVNR(10, 120);*/
 				boolean blank = false;
 				int[] parameters = new int[13];
 				for(int i=0; i<13; i++) {
@@ -136,16 +132,9 @@ class AutoSimulate extends JDialog{
 				substrateNetwork.initiation();
 				virtualNetworkPanel.initiation();
 				
-				SimulationProcess sp = new SimulationProcess(substrateNetwork, virtualNetworkPanel, parameters);
+				SimulationProcess sp = new SimulationProcess(substrateNetwork, virtualNetworkPanel, parameters, AlgorithmChoice.getSelectedIndex());
 				sp.mainProcess();
-				//SimulationProcess sp = new SimulationProcess(substrateNetwork, virtualNetworkPanel);
-				//sp.Process();
 				dispose();
-				/*
-				if(!blank) {
-					SimulationProcess sp = new SimulationProcess(substrateNetwork, virtualNetworkPanel, parameters);
-					dispose();
-				}*/
 			}
 		});
 		this.jp[8].setLayout(new FlowLayout(FlowLayout.RIGHT));

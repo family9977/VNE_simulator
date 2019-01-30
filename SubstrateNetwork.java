@@ -53,7 +53,6 @@ public class SubstrateNetwork extends JComponent implements MouseListener,MouseM
 	}
 	
 	public void addSN(int capacity) {
-		//System.out.println("nodecount: "+this.nodeCount);
 		this.SNs.add(new SubstrateNode(this.nodeCount, capacity));
 		this.nodeCount++;
 	}
@@ -64,7 +63,6 @@ public class SubstrateNetwork extends JComponent implements MouseListener,MouseM
 		this.SLs.add(new SubstrateLink(this.linkCount, f, t, bwr));
 		this.linkCount++;
 		System.out.println(bwr);
-		//System.out.println("SL info: ("+from+","+to+") BW: "+bwr+" linksize: "+this.SLs.size());
 		//update node's information
 		f.addNeighbors(t);
 		f.addLink((SubstrateLink)this.SLs.get(this.SLs.size()-1));

@@ -74,13 +74,8 @@ public class VirtualNetwork extends JPanel implements MouseListener,MouseMotionL
 			g.drawLine(from.X, from.Y, to.X, to.Y);
 		}
 	}
-	
-	/*public void addVN() {
-		count++;
-		this.VNs.add(new VirtualNode(count));
-	}*/
 	public void addVN(int r) {
-		System.out.println(/*"request: "+*/r);
+		System.out.println(r);
 		this.VNs.add(new VirtualNode(this.nodeCount, r));
 		this.nodeCount++;
 	}
@@ -90,13 +85,11 @@ public class VirtualNetwork extends JPanel implements MouseListener,MouseMotionL
 		VirtualNode t = (VirtualNode)this.VNs.get(to);
 		this.VLs.add(new VirtualLink(this.linkCount, f, t, r));
 		this.linkCount++;
-		//System.out.println("VL info: ("+from+","+to+")  BWR: "+r+"  linksize: "+this.VLs.size());
 		System.out.println(r);
 		f.addNeighbors(t);
 		f.addLink((VirtualLink)this.VLs.get(this.VLs.size()-1));
 		t.addNeighbors(f);
 		t.addLink((VirtualLink)this.VLs.get(this.VLs.size()-1));
-		//revenueCalculation();
 	}
 	
 	public void saveConnectionMatrix(int[][] m) {

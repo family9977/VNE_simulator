@@ -131,8 +131,6 @@ public class RandomGraphGenerator {
 							this.LinkState[i][j] = 0;
 							this.LinkState[j][i] = this.LinkState[i][j];
 						}
-						/*this.LinkState[i][j] = this.Rand.nextInt(2);
-						this.LinkState[j][i] = this.LinkState[i][j];*/
 					}
 					
 				}

@@ -35,9 +35,7 @@ public class Algorithm {
 					snsInOrder[j] = temp;
 				}
 			}
-		}/*
-		for(int i=0; i<sns.size(); i++)
-			System.out.print(snsInOrder[i].getInformation()[3]+"  ");*/
+		}
 		//*************************************************************************
 		//VirtualNetwork VNR = (VirtualNetwork)this.vnr.get(this.vnr.size()-1);
 		Vector vns = VNR.getVNs();
@@ -219,11 +217,6 @@ public class Algorithm {
 						//System.out.print((particles[p].position[i]).getInformation()[0] + " ");
 					}
 					//System.out.print("\n");
-					/*System.out.print("Velocity: ");
-					for(int j=0; j<vns.size(); j++) {
-						System.out.print(particles[p].velocity[j]+" ");
-					}
-					System.out.print("\n");*/
 				}
 				else {
 					for(int i=0; i<vns.size(); i++) {//Re-initialization
@@ -298,15 +291,12 @@ public class Algorithm {
 			sum += (float)NRvalue[j];
 		}
 		//Calculate the prob.
-		//System.out.print("Probs: ");
 		for(int k=0; k<SNs.size(); k++) {
 			prob[k] = ((float)NRvalue[k])/sum;
-			//System.out.print(NRvalue[k]+" ");
 		}
 		//Decide which sn to allocate by the prob.
 		Random rand = new Random();
 		float r = rand.nextFloat();
-		//System.out.println("r="+r);
 		int index = 0;
 		float cdf = 0;
 		while(true) {
@@ -323,7 +313,6 @@ public class Algorithm {
 	
 	private boolean Dijkstra(VirtualLink vl) {
 		//**************************************************************************
-		/*
 		//Prune the substrate links that don't have enough bandwidth
 		int bwRequest = vl.getRequest();
 		Vector candidateLinks = new Vector<SubstrateLink>();
@@ -333,7 +322,7 @@ public class Algorithm {
 				candidateLinks.add(sl);
 		}
 		if(candidateLinks.size() == 0)
-			return false;*/
+			return false;
 		//**************************************************************************
 		for(int i=0; i<this.sns.size(); i++) {
 			((SubstrateNode)this.sns.get(i)).initiationForDijkstra();
@@ -348,9 +337,7 @@ public class Algorithm {
 		SubstrateNode currentNode = start;
 		settledSet.add(currentNode);
 		currentNode.settled = true;
-		//System.out.print("\n"+"Dijkstra: ");
 		while(settledSet.size() <= this.sns.size()) {
-			//System.out.print(currentNode.getInformation()[0]+" ");
 			Vector neighbors = currentNode.getNeighbors();
 			Vector links = currentNode.getLinks();
 			for(int i=0; i<neighbors.size(); i++) {
@@ -372,46 +359,6 @@ public class Algorithm {
 			settledSet.add(currentNode);
 			currentNode.settled = true;
 		}
-		//System.out.print("\n");
-		/*
-		unsettledSet.add(start);
-		while(unsettledSet.size() != 0) {
-			SubstrateNode processnow = (SubstrateNode)unsettledSet.get(0);
-			for(int i=1; i<unsettledSet.size(); i++) {
-				//choose the smallest hop count node
-				if(((SubstrateNode)unsettledSet.get(i)).hopCount < processnow.hopCount)
-					processnow = (SubstrateNode)unsettledSet.get(i);
-			}
-			//find the links from the candidateLinks
-			for(int i=0; i<candidateLinks.size(); i++) {
-				SubstrateLink sl = (SubstrateLink)candidateLinks.get(i);
-				if(sl.getFromAndTo()[0] == processnow && !sl.getFromAndTo()[1].settled) {
-					if(processnow.hopCount + 1 < sl.getFromAndTo()[1].hopCount) {
-						sl.getFromAndTo()[1].hopCount = processnow.hopCount + 1;
-						sl.getFromAndTo()[1].predecessor = processnow;
-						if(!sl.getFromAndTo()[1].inUnsettledSet) {
-							unsettledSet.add(sl.getFromAndTo()[1]);
-							sl.getFromAndTo()[1].inUnsettledSet = true;
-						}
-						System.out.print("hopcount = " + sl.getFromAndTo()[1].hopCount+",NodeNumber:"+sl.getFromAndTo()[1].getInformation()[0]+"; ");
-					}
-				}
-				else if(sl.getFromAndTo()[1] == processnow && !sl.getFromAndTo()[0].settled) {
-					if(processnow.hopCount + 1 < sl.getFromAndTo()[0].hopCount) {
-						sl.getFromAndTo()[0].hopCount = processnow.hopCount + 1;
-						sl.getFromAndTo()[0].predecessor = processnow;
-						if(!sl.getFromAndTo()[0].inUnsettledSet) {
-							unsettledSet.add(sl.getFromAndTo()[0]);
-							sl.getFromAndTo()[0].inUnsettledSet = true;
-						}
-						System.out.print("hopcount = " + sl.getFromAndTo()[0].hopCount+",NodeNumber:"+sl.getFromAndTo()[0].getInformation()[0]+"; ");
-					}
-				}
-			}
-			System.out.print("\n");
-			processnow.settled = true;
-			unsettledSet.remove(processnow);
-		}*/
 		//finish finding a path
 		//**************************************************************************
 		//Trace the path
@@ -422,10 +369,6 @@ public class Algorithm {
 		}
 		if(vl.path.size() <= 1)
 			return false;
-		/*System.out.print("Path:  ");
-		for(int i=0; i<vl.path.size(); i++)
-			System.out.print(((SubstrateNode)vl.path.get(i)).getInformation()[0]+" ");
-		System.out.println("");*/
 		return true;
 	}
 }
